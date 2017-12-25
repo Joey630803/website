@@ -33,7 +33,14 @@
     
     width: 460px;
     text-align:center;
+    float:left;
+    margin-left:20px;
+    margin-top:20px;
 
+}
+.topNewsList{
+    float:left;
+    margin-top:20px;
 }
 
 

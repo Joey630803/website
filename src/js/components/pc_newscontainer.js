@@ -8,6 +8,7 @@ import {
 const TabPane=Tabs.TabPane
 import axios from 'axios'
 import PCNewsBlock from './pc_news_block'
+import PCNewsImageBlock from './Pc_news_image_block'
 
 
 
@@ -22,18 +23,22 @@ export default class PCNewsContainer extends React.Component{
         return (
             <div>
                 <Row>
-                    <Col span={6}></Col>
-                    <Col span={16} >
+                    <Col span={6}>
+                    </Col>
+                    <Col span={18} >
+						<PCNewsImageBlock count={9} type="guonei" width="500px" cartTitle="国内新闻" imageWidth="132px"/>
+                        
                         <Tabs className="tabs_news">
-                        <TabPane tab="头条新闻" key="1">
-                            <PCNewsBlock count={6} type="top" width="100%" bordered="false"/>
+                        <TabPane tab="娱乐" key="1">
+                            <PCNewsBlock count={6} type="yule" width="100%" bordered="false"/>
                         </TabPane>
                             <TabPane tab="国际" key="2">
 								<PCNewsBlock count={6} type="guoji" width="100%" bordered="false"/>
 							</TabPane>
                         </Tabs>
+
                     </Col>
-                    <Col span={2}></Col>
+
                 </Row>
             </div>
         )

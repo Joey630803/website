@@ -8,19 +8,11 @@ import {
 } from 'antd'
 const TabPane=Tabs.TabPane
 import axios from 'axios'
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    NavLink,
-    Switch,
-    Redirect,
-    hashHistory
-  } from 'react-router-dom'
+import {Link,NavLink} from 'react-router-dom'
 
 
 
-export default class PCNewsBlock extends React.Component{
+class PCNewsBlock extends React.Component{
     constructor(){
         super()
         this.state={
@@ -39,11 +31,13 @@ export default class PCNewsBlock extends React.Component{
         //     this.setState({news: json})
         // })
          var myFetchOptions = {
-		 	method: 'GET'
+             method: 'GET',
+
 		 };
         fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count,myFetchOptions)
-        .then(response => response.json())
-        .then(json => this.setState({news: json}));
+        .then(res =>res.json()).then(json=>{
+            this.setState({news: json})
+        })
         
 
     }
@@ -52,12 +46,12 @@ export default class PCNewsBlock extends React.Component{
 		const newsList = news.length
 			? news.map((newsItem, index) => (
 				<li key={index}>
-					<a to={`details/${newsItem.uniquekey}`} target="_blank">
+					<Link to={`/details/${newsItem.uniquekey}`} target="_blank">
 						{newsItem.title}
-					</a>
+					</Link>
 				</li>
 			))
-		    : '没有加载到任何狗屁';
+		    : '没有加载到';
     
         return (
             <div>
@@ -70,4 +64,4 @@ export default class PCNewsBlock extends React.Component{
         )
     }
 }
-
+export default PCNewsBlock

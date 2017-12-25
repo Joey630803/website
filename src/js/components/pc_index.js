@@ -2,6 +2,7 @@ import React from 'react'
 import PCHeader from './pc_header'
 import PCfooter from './pc_footer'
 import PCNewContainer from './pc_newscontainer'
+import PCNewsDetails from './pc_news_details'
 import Home from './pc_home'
 import Introduce from './pc_introduce'
 import Contact from './pc_contact'
@@ -12,23 +13,40 @@ import {
     Link,
     NavLink,
     Switch,
-    Redirect
+    Redirect,
+    hashHistory,
+    withRouter
 } from 'react-router-dom'
 
-export default class PCIndex extends React.Component{
+class PCIndex extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            paramsList:null
+        }
+    }
     render(){
+
         return (
-            <Router>
+            <Router history={hashHistory}>
             <div>
                <PCHeader/>
-               <Route exact path="/"  render={()=>(<Redirect to="/home"/>)} />
-                <Route  path="/home" component={Home}/>
-                <Route  path="/news" component={PCNewContainer}/>
-                <Route  path="/introduce" component={Introduce}/>
-                <Route  path="/contact" component={Contact}/>
-               <PCfooter/>
+                
+                        <Route exact path="/"  render={()=>(<Redirect to="/home"/>)} />
+                        <Route  path="/home" component={Home}/>
+                        <Route  path="/news" component={PCNewContainer}/>
+                        <Route  path="/introduce" component={Introduce}/>
+                        <Route  path="/contact" component={Contact}/>
+                        <Route path="/details/:uniquekey" component={PCNewsDetails}></Route>  
+                
+                <PCfooter/>
             </div>
             </Router>
+            
         )
+        
     }
+    
 }
+
+export default PCIndex
